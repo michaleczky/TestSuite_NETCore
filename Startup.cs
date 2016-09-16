@@ -54,9 +54,6 @@ namespace PxTestSuite
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-
-            // Add authentication middleware and inform .NET Core MVC what scheme we'll be using
-            // services.AddAuthentication(options => options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
     
         }
 
@@ -95,8 +92,8 @@ namespace PxTestSuite
             // Google authentication
             app.UseGoogleAuthentication(new GoogleOptions()
                 {
-                    ClientId = "10349815067-30ih74pflogqjdem01di9k9rhl2t6vuj.apps.googleusercontent.com",
-                    ClientSecret = "L-WnQSe4tK0k8_VHgfi8g7sN",
+                    ClientId = Configuration["Authentication:Google:ClientId"],
+                    ClientSecret = Configuration["Authentication:Google:ClientSecret"],
                     Scope = { "email", "openid" }
                 });
 
